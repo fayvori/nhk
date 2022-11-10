@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  backend:
+    build: 
+      context: ./NeHacaton
+      dockerfile: ./Dockerfile
+    container_name: "backend"
+    ports:
+      - "5119:80"
+    networks:
+      - base
+
+  frontend:
+    build: 
+      context: ./ne_hakaton_frontend_r
+      dockerfile: ./Dockerfile
+    container_name: "frontend"
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+    networks:
+      - base
+
+networks:
+  base:
